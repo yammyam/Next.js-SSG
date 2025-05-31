@@ -1,6 +1,9 @@
-.h1 {
-  color: red;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-.h2 {
-  color: blue;
+/* >직계 , 그냥하면 모든 h3 가 바뀜 */
+.container h3 {
+  margin-bottom: 0px;
 }
