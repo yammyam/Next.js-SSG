@@ -8,7 +8,7 @@ import fetchBooks from "@/lib/fetch-books";
 import fetchRandomBooks from "@/lib/fetch-random-books";
 // @/mock/books.json 경로에서 골뱅이는 src를 가리키는뜻, package.json에서 확인가능
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   //컴퍼넌트보다 먼저 실행되어서,컴포넌트에 필요한(백엔드데이터) 데이터를 미리 불러오는 함수
   // const allBooks = await fetchBooks();
   // const recoBooks = await fetchRandomBooks();
@@ -23,7 +23,7 @@ export const getServerSideProps = async () => {
 export default function Home({
   allBooks,
   recoBooks,
-}: InferGetStaticPropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className={style.container}>
       <section>
