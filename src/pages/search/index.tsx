@@ -1,9 +1,20 @@
 import SearchableLayout from "@/components/searchable-layout";
 import { ReactNode } from "react";
-import books from "@/mock/books.json";
 import BookItem from "@/components/book-item";
-// ?q=홍길동  쿼리스트링은 경로에 대해 뭘 건들지 않기 때문에 파일구조엔 변화없다.
-export default function Page() {
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import fetchBooks from "@/lib/fetch-books";
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const q = context.query.q; //쿼리 스트링 불러오는 것
+  const books = await fetchBooks(q as string); // 타입단언
+  return {
+    props: { books },
+  };
+};
+export default function Page({
+  books,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div>
       {books.map((book) => (
