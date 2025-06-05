@@ -18,6 +18,7 @@ export const getStaticProps = async () => {
   ]); //위는 순차적 해당코드는 병렬적 동작
   return {
     props: { allBooks, recoBooks },
+    // revalidate: 3,
   };
 };
 export default function Home({
